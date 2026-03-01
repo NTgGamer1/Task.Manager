@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">task<span>.</span>manager</div>
+        <div class="toggle-wrap">
+            <span>☀️</span>
+            <label class="toggle">
+                <input type="checkbox" id="themeToggle" checked>
+                <div class="toggle-track">
+                    <div class="toggle-thumb"></div>
+                </div>
+            </label>
+            <span>🌙</span>
+        </div>
+    </header>
+    
+    <main>
+        <h1>My Tasks</h1>
+        <p class="subtitle">Stay organized. Stay productive.</p>
+    
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num" id="totalCount">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num" id="pendingCount">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num" id="doneCount">0</div>
+                <div class="stat-label">Done</div>
+            </div>
+        </div>
+    
+        <div class="add-form">
+            <div class="form-row">
+                <input type="text" id="taskInput" placeholder="Add a new task..." />
+                <button class="add-btn" onclick="addTask()">+ ADD</button>
+            </div>
+            <div class="form-row2">
+                <select id="prioritySelect">
+                    <option value="medium">⚡ Medium Priority</option>
+                    <option value="high">🔴 High Priority</option>
+                    <option value="low">🟢 Low Priority</option>
+                </select>
+                <input type="date" id="dateInput" />
+            </div>
+        </div>
+    
+        <div class="filters">
+            <button class="filter-btn active" onclick="setFilter('all', this)">ALL</button>
+            <button class="filter-btn" onclick="setFilter('pending', this)">PENDING</button>
+            <button class="filter-btn" onclick="setFilter('done', this)">DONE</button>
+            <button class="filter-btn" onclick="setFilter('high', this)">HIGH</button>
+            <button class="filter-btn" onclick="setFilter('medium', this)">MEDIUM</button>
+            <button class="filter-btn" onclick="setFilter('low', this)">LOW</button>
+        </div>
+    
+        <div class="tasks" id="taskList"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
