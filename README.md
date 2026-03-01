@@ -6,7 +6,7 @@ A clean, minimal task manager built with vanilla HTML, CSS, and JavaScript. Feat
 
 ## 🚀 Live Demo
 
-[View Live Demo]() &nbsp;|&nbsp; [GitHub Repository](https://github.com/NTgGamer1/Task.Manager)
+[View Live Demo](https://ntg-taskmanager.netlify.app/) &nbsp;|&nbsp; [GitHub Repository](https://github.com/NTgGamer1/Task.Manager)
 
 ---
 
