@@ -185,9 +185,3 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ## 👤 Author
 
 **Nikhil Maurya**
-
-- [Portfolio](https://ntg-portfolio.vercel.app)
-- [GitHub](https://github.com/NTgGamer1)
-- [LinkedIn](https://linkedin.com/in/ntggamer1)
-
----
