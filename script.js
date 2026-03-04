@@ -13,9 +13,9 @@ toggle.addEventListener("change", () => {
   localStorage.setItem("tm_theme", theme);
 });
 
-// Enter key
-document.getElementById("taskInput").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") addTask();
+document.getElementById("taskForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  addTask();
 });
 
 function saveTasks() {
@@ -60,10 +60,12 @@ function deleteTask(id) {
 
 function setFilter(f, btn) {
   filter = f;
-  document
-    .querySelectorAll(".filter-btn")
-    .forEach((b) => b.classList.remove("active"));
+  document.querySelectorAll(".filter-btn").forEach((b) => {
+    b.classList.remove("active");
+    b.setAttribute("aria-pressed", "false");
+  });
   btn.classList.add("active");
+  btn.setAttribute("aria-pressed", "true");
   render();
 }
 
@@ -76,6 +78,19 @@ function formatDate(due) {
   if (!due) return "";
   const d = new Date(due + "T00:00:00");
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[char];
+  });
 }
 
 function render() {
@@ -93,17 +108,22 @@ function render() {
     list.innerHTML = filtered
       .map(
         (t) => `
-        <div class="task ${t.done ? "done" : ""}">
-          <div class="task-check ${t.done ? "checked" : ""}" onclick="toggleDone(${t.id})"></div>
+        <article class="task ${t.done ? "done" : ""}" role="listitem">
+          <button
+            type="button"
+            class="task-check ${t.done ? "checked" : ""}"
+            onclick="toggleDone(${t.id})"
+            aria-label="${t.done ? "Mark task as pending" : "Mark task as completed"}"
+          ></button>
           <div class="task-body">
-            <div class="task-title">${t.title}</div>
+            <div class="task-title">${escapeHtml(t.title)}</div>
             <div class="task-meta">
               <span class="priority-badge priority-${t.priority}">${t.priority}</span>
               ${t.due ? `<span class="due-date ${isOverdue(t.due) && !t.done ? "overdue" : ""}">📅 ${formatDate(t.due)}${isOverdue(t.due) && !t.done ? " · overdue" : ""}</span>` : ""}
             </div>
           </div>
-          <button class="task-del" onclick="deleteTask(${t.id})">✕</button>
-        </div>
+          <button type="button" class="task-del" aria-label="Delete task" onclick="deleteTask(${t.id})">✕</button>
+        </article>
       `,
       )
       .join("");

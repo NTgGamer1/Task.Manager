@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ntg-taskmanager.netlify.app/sitemap.xml

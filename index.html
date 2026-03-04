@@ -1,72 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="logo">task<span>.</span>manager</div>
-        <div class="toggle-wrap">
-            <span>☀️</span>
-            <label class="toggle">
-                <input type="checkbox" id="themeToggle" checked>
-                <div class="toggle-track">
-                    <div class="toggle-thumb"></div>
-                </div>
-            </label>
-            <span>🌙</span>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Task Manager | Daily Planner with Priority & Due Dates</title>
+    <meta
+      name="description"
+      content="Free task manager app to organize daily work with priorities, due dates, filters, dark mode, and local storage. Plan tasks faster on desktop and mobile."
+    />
+    <meta
+      name="keywords"
+      content="task manager, to do list app, daily planner, productivity app, priority tasks, due date tracker"
+    />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="Nikhil Maurya" />
+    <meta name="theme-color" content="#111111" />
+    <link rel="canonical" href="https://ntg-taskmanager.netlify.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Task Manager" />
+    <meta property="og:title" content="Task Manager | Daily Planner with Priority & Due Dates" />
+    <meta
+      property="og:description"
+      content="Organize tasks with priority levels, due dates, smart filters, and a clean interface. Free and mobile-friendly task manager app."
+    />
+    <meta property="og:url" content="https://ntg-taskmanager.netlify.app/" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free Task Manager App | Daily Planner with Priority & Due Dates" />
+    <meta
+      name="twitter:description"
+      content="A fast, free task manager for daily planning with priority tags, due dates, and progress stats."
+    />
+    <meta name="twitter:image" content="https://ntg-taskmanager.netlify.app/og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Task Manager",
+        "url": "https://ntg-taskmanager.netlify.app/",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web",
+        "description": "Free task manager web app for organizing work with priorities, due dates, and filters.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Add and complete tasks",
+          "Priority-based organization",
+          "Due date tracking",
+          "Dark and light themes",
+          "Task filters and live stats",
+          "Local storage persistence"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this task manager free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. This task manager is free to use in the browser with no subscription required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the app save my tasks after refresh?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Tasks are stored in your browser using localStorage so they remain available after page refreshes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I prioritize tasks and set due dates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can mark tasks as high, medium, or low priority and optionally assign due dates."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="logo" href="/" aria-label="Task Manager home">task<span>.</span>manager</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#app">App</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="toggle-wrap">
+        <span aria-hidden="true">☀️</span>
+        <label class="toggle" for="themeToggle" aria-label="Toggle theme">
+          <input type="checkbox" id="themeToggle" checked />
+          <div class="toggle-track">
+            <div class="toggle-thumb"></div>
+          </div>
+        </label>
+        <span aria-hidden="true">🌙</span>
+      </div>
     </header>
-    
-    <main>
-        <h1>My Tasks</h1>
+
+    <main id="main-content">
+      <section class="hero" id="app">
+        <h1>Free Task Manager App for Daily Planning</h1>
         <p class="subtitle">Stay organized. Stay productive.</p>
-    
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-num" id="totalCount">0</div>
-                <div class="stat-label">Total</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num" id="pendingCount">0</div>
-                <div class="stat-label">Pending</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num" id="doneCount">0</div>
-                <div class="stat-label">Done</div>
-            </div>
+        <p class="intro-copy">
+          Plan your day with a simple online to-do list. Add tasks, assign priorities, set due dates,
+          and track completion progress from any device.
+        </p>
+      </section>
+
+      <section aria-label="Task statistics" class="stats">
+        <div class="stat">
+          <div class="stat-num" id="totalCount">0</div>
+          <div class="stat-label">Total</div>
         </div>
-    
-        <div class="add-form">
-            <div class="form-row">
-                <input type="text" id="taskInput" placeholder="Add a new task..." />
-                <button class="add-btn" onclick="addTask()">+ ADD</button>
-            </div>
-            <div class="form-row2">
-                <select id="prioritySelect">
-                    <option value="medium">⚡ Medium Priority</option>
-                    <option value="high">🔴 High Priority</option>
-                    <option value="low">🟢 Low Priority</option>
-                </select>
-                <input type="date" id="dateInput" />
-            </div>
+        <div class="stat">
+          <div class="stat-num" id="pendingCount">0</div>
+          <div class="stat-label">Pending</div>
         </div>
-    
-        <div class="filters">
-            <button class="filter-btn active" onclick="setFilter('all', this)">ALL</button>
-            <button class="filter-btn" onclick="setFilter('pending', this)">PENDING</button>
-            <button class="filter-btn" onclick="setFilter('done', this)">DONE</button>
-            <button class="filter-btn" onclick="setFilter('high', this)">HIGH</button>
-            <button class="filter-btn" onclick="setFilter('medium', this)">MEDIUM</button>
-            <button class="filter-btn" onclick="setFilter('low', this)">LOW</button>
+        <div class="stat">
+          <div class="stat-num" id="doneCount">0</div>
+          <div class="stat-label">Done</div>
         </div>
-    
-        <div class="tasks" id="taskList"></div>
+      </section>
+
+      <form class="add-form" id="taskForm" aria-label="Add a new task">
+        <div class="form-row">
+          <label class="visually-hidden" for="taskInput">Task title</label>
+          <input type="text" id="taskInput" placeholder="Add a new task..." autocomplete="off" />
+
+          <button type="submit" class="add-btn">+ ADD</button>
+        </div>
+        <div class="form-row2">
+          <label class="visually-hidden" for="prioritySelect">Task priority</label>
+          <select id="prioritySelect" aria-label="Task priority">
+            <option value="medium">⚡ Medium Priority</option>
+            <option value="high">🔴 High Priority</option>
+            <option value="low">🟢 Low Priority</option>
+          </select>
+          <label class="visually-hidden" for="dateInput">Due date</label>
+          <input type="date" id="dateInput" aria-label="Due date" />
+        </div>
+      </form>
+
+      <section class="filters" aria-label="Task filters">
+        <button type="button" class="filter-btn active" onclick="setFilter('all', this)" aria-pressed="true">ALL</button>
+        <button type="button" class="filter-btn" onclick="setFilter('pending', this)" aria-pressed="false">PENDING</button>
+        <button type="button" class="filter-btn" onclick="setFilter('done', this)" aria-pressed="false">DONE</button>
+        <button type="button" class="filter-btn" onclick="setFilter('high', this)" aria-pressed="false">HIGH</button>
+        <button type="button" class="filter-btn" onclick="setFilter('medium', this)" aria-pressed="false">MEDIUM</button>
+        <button type="button" class="filter-btn" onclick="setFilter('low', this)" aria-pressed="false">LOW</button>
+      </section>
+
+      <section aria-labelledby="tasksHeading">
+        <h2 class="section-title" id="tasksHeading">Your Task List</h2>
+        <div class="tasks" id="taskList" role="list" aria-live="polite"></div>
+      </section>
+
+      <section id="features" class="content-section" aria-labelledby="featuresHeading">
+        <h2 id="featuresHeading">Why use this task manager?</h2>
+        <ul>
+          <li>Manage work and personal tasks in one clean dashboard.</li>
+          <li>Prioritize tasks by urgency with High, Medium, and Low labels.</li>
+          <li>Track deadlines with date-based overdue indicators.</li>
+          <li>Use filters to focus on pending, completed, or priority-specific tasks.</li>
+          <li>View live productivity stats for total, pending, and done tasks.</li>
+          <li>Keep your data in-browser with private local storage persistence.</li>
+        </ul>
+      </section>
+
+      <section id="faq" class="content-section" aria-labelledby="faqHeading">
+        <h2 id="faqHeading">Task Manager FAQ</h2>
+        <details>
+          <summary>Is this task manager free to use?</summary>
+          <p>Yes. The app is free to use and works directly in your browser.</p>
+        </details>
+        <details>
+          <summary>Will my tasks stay after I refresh?</summary>
+          <p>Yes. Tasks are saved in your browser storage and reloaded automatically.</p>
+        </details>
+        <details>
+          <summary>Can I prioritize tasks and add due dates?</summary>
+          <p>Yes. Each task supports priority labels and optional due dates for planning.</p>
+        </details>
+      </section>
     </main>
 
+    <footer class="site-footer">
+      <p>Task Manager for better daily planning and productivity.</p>
+    </footer>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

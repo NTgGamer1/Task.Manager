@@ -44,16 +44,19 @@ body {
 }
 
 /* HEADER */
-header {
+.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 28px 40px;
   border-bottom: 1px solid var(--border);
   background: var(--surface);
+  flex-wrap: wrap;
 }
 
 .logo {
+  text-decoration: none;
   font-family: "Space Mono", monospace;
   font-size: 1.2rem;
   letter-spacing: -0.02em;
@@ -61,6 +64,24 @@ header {
 }
 .logo span {
   color: var(--accent);
+}
+
+.site-nav {
+  display: flex;
+  gap: 14px;
+}
+
+.site-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: "Space Mono", monospace;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--text);
 }
 
 /* TOGGLE */
@@ -111,6 +132,23 @@ main {
   padding: 40px 24px;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  z-index: 1000;
+  background: var(--accent);
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
 h1 {
   font-family: "Space Mono", monospace;
   font-size: 2.2rem;
@@ -120,6 +158,13 @@ h1 {
 .subtitle {
   color: var(--text-muted);
   font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.intro-copy {
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 70ch;
   margin-bottom: 36px;
 }
 
@@ -168,7 +213,7 @@ h1 {
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto;
   gap: 10px;
   margin-bottom: 12px;
 }
@@ -300,6 +345,8 @@ button.add-btn:active {
   justify-content: center;
   transition: all 0.2s;
   margin-top: 2px;
+  background: transparent;
+  padding: 0;
 }
 .task-check:hover {
   border-color: var(--accent);
@@ -377,6 +424,17 @@ button.add-btn:active {
   background: rgba(255, 79, 79, 0.1);
 }
 
+.task-check:focus-visible,
+.task-del:focus-visible,
+.add-btn:focus-visible,
+.filter-btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.toggle:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .empty {
   text-align: center;
   padding: 60px 20px;
@@ -389,4 +447,83 @@ button.add-btn:active {
 .empty-icon {
   font-size: 2.5rem;
   margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.content-section {
+  margin-top: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.content-section h2 {
+  font-family: "Space Mono", monospace;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.content-section ul {
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.content-section details {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.content-section details:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.content-section summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.content-section p {
+  margin-top: 8px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.site-footer {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 20px 20px;
+  }
+  .site-nav {
+    order: 3;
+    width: 100%;
+  }
 }
